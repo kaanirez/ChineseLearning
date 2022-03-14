@@ -54,6 +54,7 @@ def recordResults():
         db.session.commit()
         addedresults.append(characterresult.toJson())
     
+    jsonfiles = jsonify(addedresults)
     response = jsonify(jsonfiles)
     response.headers.add('Access-Control-Allow-Origin','*')
     return response
