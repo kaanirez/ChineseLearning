@@ -54,7 +54,9 @@ def recordResults():
         db.session.commit()
         addedresults.append(characterresult.toJson())
     
-    return jsonify(addedresults)
+    response = jsonify(jsonfiles)
+    response.headers.add('Access-Control-Allow-Origin','*')
+    return response
 
 @flashcard.route('/character', methods=['GET', 'POST'])
 def get_character_results():
