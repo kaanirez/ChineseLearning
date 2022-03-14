@@ -34,6 +34,7 @@ def get_cards():
     print(jsonfiles)
 
     response = jsonify(jsonfiles)
+    response.headers.add('Access-Control-Allow-Origin','*')
     return response
 
 @flashcard.route('/updateresult', methods =['GET', 'POST'])
@@ -62,4 +63,5 @@ def get_character_results():
     jsonfiles = [a.toJson() for a in chars]
 
     response = jsonify(jsonfiles)
+    response.headers.add('Access-Control-Allow-Origin','*')
     return response
