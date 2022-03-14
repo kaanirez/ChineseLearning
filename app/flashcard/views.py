@@ -24,13 +24,16 @@ def get_cards():
     number = int(args.get('n',8))
     page = int(args.get('page',1))
 
+    print(number, page)
+
     chars_page = Characters.query.paginate(page=page, per_page=number)
 
     chars = chars_page.items
 
     jsonfiles = [{'name': a.name, 'pinyin':a.pinyin} for a in chars]
+    print(jsonfiles)
+
     response = jsonify(jsonfiles)
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @flashcard.route('/updateresult', methods =['GET', 'POST'])
@@ -59,5 +62,4 @@ def get_character_results():
     jsonfiles = [a.toJson() for a in chars]
 
     response = jsonify(jsonfiles)
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
