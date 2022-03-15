@@ -9,7 +9,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
 #SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:kagan12LINA@localhost:5432/app'
-SQLALCHEMY_DATABASE_URI = 'postgres://sspmowzdlxwkpd:eff1274bb20690017128b28f15d89c693efc85e89e22586a2eb5dc892c45055f@ec2-54-158-26-89.compute-1.amazonaws.com:5432/dd3nloo7u99q67'
+SQLALCHEMY_DATABASE_URI = 'postgresql://sspmowzdlxwkpd:eff1274bb20690017128b28f15d89c693efc85e89e22586a2eb5dc892c45055f@ec2-54-158-26-89.compute-1.amazonaws.com:5432/dd3nloo7u99q67'
 
 
 SQLALCHEMY_TRACK_MODIFICATIONS= False
