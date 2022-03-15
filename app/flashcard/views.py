@@ -12,7 +12,7 @@ import json
 # Import module forms
 
 from app.flashcard.models import Characters, UserCharacterProgress, UserTestCharacterResult,UserTestScoreRecord
-from app.flashcard.functions import get_or_create
+from app.flashcard.functions import get_or_create,recommended
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 flashcard = Blueprint('flashcard', __name__, url_prefix='/flashcard')
@@ -23,18 +23,18 @@ def get_cards():
     args = request.args
     number = int(args.get('n',8))
     page = int(args.get('page',1))
+    user = args.get('user')
 
     print(number, page)
 
     chars_page = Characters.query.paginate(page=page, per_page=number)
-
     chars = chars_page.items
 
     jsonfiles = [{'name': a.name, 'pinyin':a.pinyin} for a in chars]
     print(jsonfiles)
 
     response = jsonify(jsonfiles)
-    response.headers.add('Access-Control-Allow-Origin','*')
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @flashcard.route('/updateresult', methods =['GET', 'POST'])
@@ -54,10 +54,10 @@ def recordResults():
         db.session.commit()
         addedresults.append(characterresult.toJson())
     
-    jsonfiles = jsonify(addedresults)
-    response = jsonify(jsonfiles)
-    response.headers.add('Access-Control-Allow-Origin','*')
+    response = jsonify(addedresults)
     return response
+
+    
 
 @flashcard.route('/character', methods=['GET', 'POST'])
 def get_character_results():
@@ -66,5 +66,5 @@ def get_character_results():
     jsonfiles = [a.toJson() for a in chars]
 
     response = jsonify(jsonfiles)
-    response.headers.add('Access-Control-Allow-Origin','*')
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
