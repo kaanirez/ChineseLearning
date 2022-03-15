@@ -31,7 +31,7 @@ def get_cards():
     chars = chars_page.items
 
     jsonfiles = [{'name': a.name, 'pinyin':a.pinyin} for a in chars]
-    print(jsonfiles)
+    #print(jsonfiles)
 
     response = jsonify(jsonfiles)
     response.headers.add('Access-Control-Allow-Origin', '*')
